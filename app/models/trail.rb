@@ -1,3 +1,3 @@
 class Trail < ApplicationRecord
 
-end 
+end
