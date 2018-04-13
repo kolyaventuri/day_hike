@@ -64,19 +64,19 @@ describe 'As a user' do
       scenario 'average' do
         visit trip_path(@trip)
 
-        expect(page).to have_content("Average distance: #{@trip.average_distance}")
+        expect(page).to have_content("Average distance: #{@trip.average_distance} miles")
       end
 
       scenario 'shortest' do
         visit trip_path(@trip)
 
-        expect(page).to have_content("Shortest distance: #{@trip.shortest_distance}")
+        expect(page).to have_content("Shortest distance: #{@trip.shortest_distance} miles")
       end
 
       scenario 'longest' do
         visit trip_path(@trip)
 
-        expect(page).to have_content("Longest distance: #{@trip.longest_distance}")
+        expect(page).to have_content("Longest distance: #{@trip.longest_distance} miles")
       end
     end
   end

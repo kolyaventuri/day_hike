@@ -1,6 +1,10 @@
 <h1><%= @trip.name %></h1>
 <h2>Total planned distance: <%= @trip.distance %> miles</h2>
 
+<h3>Average distance: <%= @trip.average_distance %> miles</h3>
+<h3>Shortest distance: <%= @trip.shortest_distance %> miles</h3>
+<h3>Longest distance: <%= @trip.longest_distance %> miles</h3>
+
 <ul class="trails">
   <% @trip.trails.each do |trail| %>
     <li>
