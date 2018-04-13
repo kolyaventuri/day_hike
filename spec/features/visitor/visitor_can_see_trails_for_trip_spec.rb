@@ -14,7 +14,7 @@ describe 'As a user' do
 
       create_list(:trip, num_gen_trips)
 
-      visit trip_index
+      visit trips_path
 
       within('.trips') do
         trips = find('li')
