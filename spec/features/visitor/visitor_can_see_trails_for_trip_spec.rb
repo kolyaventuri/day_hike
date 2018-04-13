@@ -12,14 +12,14 @@ describe 'As a user' do
     scenario 'I should see a list of trips' do
       num_gen_trips = 3
 
-      create_list(:trip, num_gen_trips)
+      trips = create_list(:trip, num_gen_trips)
 
       visit trips_path
 
       within('.trips') do
-        trips = all('li')
-        expect(trips.length).to be(num_gen_trips)
-        expect(page).to have_link('Trip 1')
+        trip_lis = all('li')
+        expect(trip_lis.length).to be(num_gen_trips)
+        expect(page).to have_link(trips.first.name)
       end
     end
   end
