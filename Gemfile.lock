@@ -71,6 +71,9 @@ GEM
     factory_bot_rails (4.8.2)
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
+    erubi (1.7.1)
+    execjs (2.7.0)
+
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -100,6 +103,7 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     pg (1.0.0)
+
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
