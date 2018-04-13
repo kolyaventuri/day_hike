@@ -19,6 +19,7 @@ describe 'As a user' do
       within('.trips') do
         trips = all('li')
         expect(trips.length).to be(num_gen_trips)
+        expect(page).to have_link('Trip 1')
       end
     end
   end
