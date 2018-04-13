@@ -36,7 +36,8 @@ describe 'As a user' do
 
     scenario 'I can see the total planned hiking distance' do
       visit trip_path(@trip)
-      
+
+      expect(page).to have_content("Total planned distance: #{@trip.distance} miles")
     end
   end
 end
