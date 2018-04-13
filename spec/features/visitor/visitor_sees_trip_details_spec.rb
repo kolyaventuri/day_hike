@@ -47,8 +47,37 @@ describe 'As a user' do
       expect(page).to have_content("Total planned distance: #{trip.distance} miles")
     end
 
-    scenario 'I can see the average hiking distance per trails' do
-      
+    context 'I can see trail distances' do
+      before(:each) do
+        @trip = create(:trip)
+        @trails = create_list(:trail, 3)
+        @trails.first.length = 5
+        @trails.second.length = 10
+        @trails.last.length = 15
+
+        @trails.each do |trail|
+          trail.save
+          TripTrail.create!(trip: @trip, trail: trail)
+        end
+      end
+
+      scenario 'average' do
+        visit trip_path(@trip)
+
+        expect(page).to have_content("Average distance: #{@trip.average_distance}")
+      end
+
+      scenario 'shortest' do
+        visit trip_path(@trip)
+
+        expect(page).to have_content("Shortest distance: #{@trip.shortest_distance}")
+      end
+
+      scenario 'longest' do
+        visit trip_path(@trip)
+
+        expect(page).to have_content("Longest distance: #{@trip.longest_distance}")
+      end
     end
   end
 end
