@@ -17,7 +17,7 @@ describe 'As a user' do
       visit trips_path
 
       within('.trips') do
-        trips = find('li')
+        trips = all('li')
         expect(trips.length).to be(num_gen_trips)
       end
     end
