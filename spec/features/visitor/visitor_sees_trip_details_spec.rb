@@ -33,5 +33,10 @@ describe 'As a user' do
         end
       end
     end
+
+    scenario 'I can see the total planned hiking distance' do
+      visit trip_path(@trip)
+      
+    end
   end
 end
