@@ -24,7 +24,7 @@ describe 'As a user' do
         lis = all('li')
         expect(lis.length).to be(3)
 
-        li.each_with_index do |li, index|
+        lis.each_with_index do |li, index|
           within(li) do
             expect(page).to have_content("Name: #{@trails[index].name}")
             expect(page).to have_content("Address: #{@trails[index].address}")
