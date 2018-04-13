@@ -35,6 +35,7 @@ describe Trip, type: :model do
         trails.last.length = 15
 
         trails.each do |trail|
+          trail.save
           TripTrail.create!(trip: trip, trail: trail)
         end
         expect(trip.average_distance).to be(10)
@@ -50,6 +51,7 @@ describe Trip, type: :model do
         trails.last.length = 15
 
         trails.each do |trail|
+          trail.save
           TripTrail.create!(trip: trip, trail: trail)
         end
         expect(trip.shortest_distance).to be(5)
@@ -65,9 +67,10 @@ describe Trip, type: :model do
         trails.last.length = 15
 
         trails.each do |trail|
+          trail.save
           TripTrail.create!(trip: trip, trail: trail)
         end
-        expect(trip.shortest_distance).to be(15)
+        expect(trip.longest_distance).to be(15)
       end
     end
   end

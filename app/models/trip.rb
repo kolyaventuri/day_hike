@@ -7,4 +7,16 @@ class Trip < ApplicationRecord
   def distance
     trails.sum(:length)
   end
+
+  def average_distance
+    trails.average(:length).to_i
+  end
+
+  def shortest_distance
+    trails.minimum(:length)
+  end
+
+  def longest_distance
+    trails.maximum(:length)
+  end
 end
