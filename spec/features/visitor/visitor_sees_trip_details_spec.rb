@@ -4,11 +4,6 @@ describe 'As a user' do
   context 'when I visit a trip show page' do
     before(:each) do
       DatabaseCleaner.clean
-      @trip = create(:trip)
-      @trails = create_list(:trail, 3)
-      @trails.each do |trail|
-        TripTrail.create!(trip: @trip, trail: trail)
-      end
     end
 
     after(:each) do
@@ -16,9 +11,15 @@ describe 'As a user' do
     end
 
     scenario 'I can see the list of trails for that trip' do
-      visit trip_path(@trip)
+      trip = create(:trip)
+      trails = create_list(:trail, 3)
+      trails.each do |trail|
+        TripTrail.create!(trip: trip, trail: trail)
+      end
 
-      expect(page).to have_content(@trip.name)
+      visit trip_path(trip)
+
+      expect(page).to have_content(trip.name)
 
       within('.trails') do
         lis = all('li')
@@ -26,18 +27,28 @@ describe 'As a user' do
 
         lis.each_with_index do |li, index|
           within(li) do
-            expect(page).to have_content("Name: #{@trails[index].name}")
-            expect(page).to have_content("Address: #{@trails[index].address}")
-            expect(page).to have_content("Length: #{@trails[index].length} miles")
+            expect(page).to have_content("Name: #{trails[index].name}")
+            expect(page).to have_content("Address: #{trails[index].address}")
+            expect(page).to have_content("Length: #{trails[index].length} miles")
           end
         end
       end
     end
 
     scenario 'I can see the total planned hiking distance' do
-      visit trip_path(@trip)
+      trip = create(:trip)
+      trails = create_list(:trail, 3)
+      trails.each do |trail|
+        TripTrail.create!(trip: trip, trail: trail)
+      end
 
-      expect(page).to have_content("Total planned distance: #{@trip.distance} miles")
+      visit trip_path(trip)
+
+      expect(page).to have_content("Total planned distance: #{trip.distance} miles")
+    end
+
+    scenario 'I can see the average hiking distance per trails' do
+      
     end
   end
 end

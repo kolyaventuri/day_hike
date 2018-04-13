@@ -9,11 +9,6 @@ describe Trip, type: :model do
   describe 'Methods' do
     before(:each) do
       DatabaseCleaner.clean
-      @trip = create(:trip)
-      @trails = create_list(:trail, 3)
-      @trails.each do |trail|
-        TripTrail.create!(trip: @trip, trail: trail)
-      end
     end
 
     after(:each) do
@@ -22,7 +17,57 @@ describe Trip, type: :model do
 
     context '#distance' do
       it 'should be able to calculate the total distance' do
-        expect(@trip.distance).to be(15)
+        trip = create(:trip)
+        trails = create_list(:trail, 3)
+        trails.each do |trail|
+          TripTrail.create!(trip: trip, trail: trail)
+        end
+        expect(trip.distance).to be(15)
+      end
+    end
+
+    context '#average_distance' do
+      it 'should calculate the average trail distance' do
+        trip = create(:trip)
+        trails = create_list(:trail, 3)
+        trails.first.length = 5
+        trails.second.length = 10
+        trails.last.length = 15
+
+        trails.each do |trail|
+          TripTrail.create!(trip: trip, trail: trail)
+        end
+        expect(trip.average_distance).to be(10)
+      end
+    end
+
+    context '#shortest_distance' do
+      it 'should calculate the shortest trail distance' do
+        trip = create(:trip)
+        trails = create_list(:trail, 3)
+        trails.first.length = 5
+        trails.second.length = 10
+        trails.last.length = 15
+
+        trails.each do |trail|
+          TripTrail.create!(trip: trip, trail: trail)
+        end
+        expect(trip.shortest_distance).to be(5)
+      end
+    end
+
+    context '#longest_distance' do
+      it 'should calculate the longest trail distance' do
+        trip = create(:trip)
+        trails = create_list(:trail, 3)
+        trails.first.length = 5
+        trails.second.length = 10
+        trails.last.length = 15
+
+        trails.each do |trail|
+          TripTrail.create!(trip: trip, trail: trail)
+        end
+        expect(trip.shortest_distance).to be(15)
       end
     end
   end
